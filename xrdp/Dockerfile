@@ -17,6 +17,9 @@ RUN apt-get update \
 # Expose RDP port
 EXPOSE 3389
 
+RUN echo "lxsession -s LXDE -e LXDE" > /root/.xsession \
+    && echo "lxsession -s LXDE -e LXDE" > /etc/skel/.xsession
+
 # Set locale
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
     && echo 'Asia/Tokyo' > /etc/timezone
@@ -28,11 +31,11 @@ ENV LANG=ja_JP.UTF-8 \
     LC_ALL=ja_JP.UTF-8
 
 # Set default vars
-ENV USER_NAME=developer \
-    PASSWD=xrdppasswd
-ENV HOME=/home/${USER_NAME}
-WORKDIR $HOME
-RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/${USER_NAME}
+ENV DEFAULT_USER=developer \
+    DEFAULT_PASSWD=xrdppasswd
+
+# Set sudoers for any user
+RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/ALL
 
 # Change permission so that non-root user can add users and groups
 RUN chmod u+s /usr/sbin/useradd \
