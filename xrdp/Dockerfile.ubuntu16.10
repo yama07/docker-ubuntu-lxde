@@ -17,8 +17,7 @@ RUN apt-get update \
 # Expose RDP port
 EXPOSE 3389
 
-RUN echo "lxsession -s LXDE -e LXDE" > /root/.xsession \
-    && echo "lxsession -s LXDE -e LXDE" > /etc/skel/.xsession
+RUN echo "startlxde" > /etc/skel/.xsession
 
 # Set locale
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \

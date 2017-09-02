@@ -14,7 +14,8 @@ fi
 # Generate container user
 echo "USER_ID: $USER_ID"
 if [ x"$USER_ID" != x"0" ]; then
-    useradd -d /home/$USER -m -s /bin/bash -u $USER_ID -g $GROUP_ID $USER
+    export HOME=/home/$USER
+    useradd -d ${HOME} -m -s /bin/bash -u $USER_ID -g $GROUP_ID $USER
 fi
 
 # Revert permissions
@@ -28,6 +29,8 @@ echo "USER: $USER"
 # Set login password
 echo "PASSWD: $PASSWD"
 echo ${USER}:${PASSWD} | sudo chpasswd
+
+[ ! -e ${HOME}/.xsession ] && cp /etc/skel/.xsession ${HOME}/.xsession
 
 echo "#############################"
 
