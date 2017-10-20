@@ -75,9 +75,3 @@ mozcで「変換エンジンプログラムの起動に失敗しました。」�
 docker build & run後に、リモートデスクトップアプリケーション（Macの場合は「Microsoft Remote Desktop」、Linuxの場合は「xfreerdp」や「Remmina」等）で接続してください。
 
 この際、接続先は(DockerホストのIP):(`-p`オプションで指定した`port`)、ユーザは`-e USER`で指定した`loginUser`、パスワードは`-e PASSWD`で指定した`loginPasswd`を指定してください。
-
-なお、ubuntu14.04,16.06のxrdpはv0.6のため、日本語キーボード配列に対応しておりません。
-[ここ](https://xrdp.vmeta.jp/%e3%82%ad%e3%83%bc%e9%85%8d%e5%88%97%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6)
-を参考にキーマップを変更してください。
-
-ubuntu16.10のxrdpはv0.9です。追加手順なしで日本語キーボードを使用できます。
