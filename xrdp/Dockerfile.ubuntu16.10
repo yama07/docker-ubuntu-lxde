@@ -40,7 +40,8 @@ RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/ALL
 RUN chmod u+s /usr/sbin/useradd \
     && chmod u+s /usr/sbin/groupadd
 
-# Copy XRDP endpoint script
-COPY endpoint.sh /opt/
-RUN chmod +x /opt/endpoint.sh
-CMD ["/opt/endpoint.sh"]
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin//docker-entrypoint.sh"]
+CMD ["xrdp"]
