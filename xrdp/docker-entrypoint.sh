@@ -6,6 +6,8 @@ USER=${USER:-${DEFAULT_USER}}
 GROUP=${GROUP:-${USER}}
 PASSWD=${PASSWD:-${DEFAULT_PASSWD}}
 
+unset DEFAULT_USER DEFAULT_PASSWD
+
 # Add group
 echo "GROUP_ID: $GROUP_ID"
 if [[ $GROUP_ID != "0" && ! $(getent group $GROUP) ]]; then
@@ -23,7 +25,7 @@ fi
 sudo chmod u-s /usr/sbin/useradd
 sudo chmod u-s /usr/sbin/groupadd
 
-if [[ $1 == "xrdp" ]]; then
+if [[ $1 == "/usr/bin/supervisord" ]]; then
     # Set login user name
     USER=$(whoami)
     echo "USER: $USER"
@@ -32,12 +34,22 @@ if [[ $1 == "xrdp" ]]; then
     echo "PASSWD: $PASSWD"
     echo ${USER}:${PASSWD} | sudo chpasswd
 
-    [ ! -e ${HOME}/.xsession ] && cp /etc/skel/.xsession ${HOME}/.xsession
+    [[ ! -e ${HOME}/.xsession ]] && \
+        cp /etc/skel/.xsession ${HOME}/.xsession
+    [[ ! -e /etc/xrdp/rsakeys.ini ]] && \
+        sudo -u xrdp -g xrdp xrdp-keygen xrdp /etc/xrdp/rsakeys.ini > /dev/null 2>&1
+    [[ ! -e /var/run/xrdp ]] && \
+        sudo install -o root -g xrdp -m 2775 -d /var/run/xrdp
+    [[ ! -e /var/run/xrdp/sockdir ]] && \
+        sudo install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir
 
-    echo "#############################"
-
-    # Run XRDP server with tail in the foreground
-    exec sudo bash -c "/etc/init.d/xrdp start && tail -F /var/log/xrdp.log"
+    if [[ $USER_ID != "0" ]]; then
+        [[ ! -e /usr/local/bin/_gosu ]] && \
+            sudo install -g $GROUP_ID -m 4750 $(which gosu) /usr/local/bin/_gosu
+        set -- /usr/local/bin/_gosu root "$@"
+    fi
 fi
+unset PASSWD
 
+echo "#############################"
 exec "$@"

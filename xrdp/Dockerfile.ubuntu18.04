@@ -11,14 +11,11 @@ RUN apt-get update \
       language-pack-ja \
       fonts-ipafont-gothic \
       fonts-ipafont-mincho \
+      supervisor \
+      gosu \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* \
     && rm -rf /var/lib/apt/lists/*
-
-# Expose RDP port
-EXPOSE 3389
-
-RUN echo "startlxde" > /etc/skel/.xsession
 
 # Set locale
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
@@ -41,8 +38,27 @@ RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/ALL
 RUN chmod u+s /usr/sbin/useradd \
     && chmod u+s /usr/sbin/groupadd
 
+# Expose RDP port
+EXPOSE 3389
+
+RUN echo "startlxde" > /etc/skel/.xsession
+
+# Set supervisord conf for xrdp service
+RUN { \
+      echo "[supervisord]"; \
+      echo "user=root"; \
+      echo "nodaemon=true"; \
+      echo "logfile=/var/log/supervisor/supervisord.log"; \
+      echo "childlogdir=/var/log/supervisor"; \
+      echo "[program:xrdp-sesman]"; \
+      echo "command=/usr/sbin/xrdp-sesman --nodaemon"; \
+      echo "[program:xrdp]"; \
+      echo "command=/usr/sbin/xrdp --nodaemon"; \
+      echo "user=xrdp"; \
+    } > /etc/supervisor/xrdp.conf
+
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-ENTRYPOINT ["/usr/local/bin//docker-entrypoint.sh"]
-CMD ["xrdp"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/xrdp.conf"]
