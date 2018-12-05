@@ -38,10 +38,6 @@ if [[ $1 == "/usr/bin/supervisord" ]]; then
         cp /etc/skel/.xsession ${HOME}/.xsession
     [[ ! -e /etc/xrdp/rsakeys.ini ]] && \
         sudo -u xrdp -g xrdp xrdp-keygen xrdp /etc/xrdp/rsakeys.ini > /dev/null 2>&1
-    [[ ! -e /var/run/xrdp ]] && \
-        sudo install -o root -g xrdp -m 2775 -d /var/run/xrdp
-    [[ ! -e /var/run/xrdp/sockdir ]] && \
-        sudo install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir
 
     if [[ $USER_ID != "0" ]]; then
         [[ ! -e /usr/local/bin/_gosu ]] && \

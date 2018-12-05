@@ -41,7 +41,9 @@ RUN chmod u+s /usr/sbin/useradd \
 # Expose RDP port
 EXPOSE 3389
 
-RUN echo "startlxde" > /etc/skel/.xsession
+RUN echo "startlxde" > /etc/skel/.xsession \
+    && install -o root -g xrdp -m 2775 -d /var/run/xrdp \
+    && install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir
 
 # Set supervisord conf for xrdp service
 RUN { \
