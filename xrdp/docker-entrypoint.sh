@@ -25,7 +25,7 @@ fi
 sudo chmod u-s /usr/sbin/useradd
 sudo chmod u-s /usr/sbin/groupadd
 
-if [[ $1 == "/usr/bin/supervisord" ]]; then
+if (( $# == 0 )); then
     # Set login user name
     USER=$(whoami)
     echo "USER: $USER"
@@ -39,6 +39,7 @@ if [[ $1 == "/usr/bin/supervisord" ]]; then
     [[ ! -e /etc/xrdp/rsakeys.ini ]] && \
         sudo -u xrdp -g xrdp xrdp-keygen xrdp /etc/xrdp/rsakeys.ini > /dev/null 2>&1
 
+    set -- /usr/bin/supervisord -c /etc/supervisor/xrdp.conf
     if [[ $USER_ID != "0" ]]; then
         [[ ! -e /usr/local/bin/_gosu ]] && \
             sudo install -g $GROUP_ID -m 4750 $(which gosu) /usr/local/bin/_gosu
