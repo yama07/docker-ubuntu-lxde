@@ -1,0 +1,13 @@
+FROM yama07/docker-ubuntu-lxde:ubuntu18.04_ja
+
+# Install PulseAudio modules
+RUN apt-get update \
+    && apt-get install -y \
+        xrdp-pulseaudio-installer \
+    && apt-get clean \
+    && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* \
+# Apply a patch
+    && sed -i -E \
+      's@^dget ".*pulseaudio.*\.dsc"$@\dget -u "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pulseaudio/$pulseaudio_version/pulseaudio_$(echo $pulseaudio_version | sed "s/^.*://").dsc"@' \
+      /usr/sbin/xrdp-build-pulse-modules \
+    && /usr/sbin/xrdp-build-pulse-modules
