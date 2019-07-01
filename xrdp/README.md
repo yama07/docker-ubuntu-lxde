@@ -12,8 +12,8 @@ DockerによるUbuntuのLXDEデスクトップ環境です。
 ### Supported tags
 
 - `ubuntu16.04_ja`: Ubuntu16.04ベース [(xrdp/Dockerfile.ubuntu16.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu16.04)
-- `ubuntu18.04_ja`: Ubuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
-- `ubuntu18.04-pulseaudio_ja`: 音声転送可能なUbuntu16.04ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
+- `ubuntu18.04_ja`, `latest`: Ubuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
+- `ubuntu18.04-pulseaudio_ja`: 音声転送可能なUbuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
 
 ## How to use
 
