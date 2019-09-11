@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
-RUN apt-get update \
+RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.cfg.d/includes \
+    && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       sudo \
       lxde \
