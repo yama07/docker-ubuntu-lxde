@@ -9,8 +9,8 @@ RUN apt-get update \
       ibus-mozc \
       language-pack-ja-base \
       language-pack-ja \
-      fonts-ipafont-gothic \
-      fonts-ipafont-mincho \
+      fonts-noto-cjk \
+      fonts-noto-color-emoji \
       supervisor \
       gosu \
     && apt-get clean \
