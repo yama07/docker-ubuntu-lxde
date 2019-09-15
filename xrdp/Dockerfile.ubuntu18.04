@@ -44,7 +44,8 @@ EXPOSE 3389
 
 RUN echo "startlxde" > /etc/skel/.xsession \
     && install -o root -g xrdp -m 2775 -d /var/run/xrdp \
-    && install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir
+    && install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir \
+    && install -o root -g root -m 0755 -d /var/run/dbus
 
 # Set supervisord conf for xrdp service
 RUN { \
@@ -53,6 +54,8 @@ RUN { \
       echo "nodaemon=true"; \
       echo "logfile=/var/log/supervisor/supervisord.log"; \
       echo "childlogdir=/var/log/supervisor"; \
+      echo "[program:dbus]"; \
+      echo "command=/usr/bin/dbus-daemon --system --nofork --nopidfile"; \
       echo "[program:xrdp-sesman]"; \
       echo "command=/usr/sbin/xrdp-sesman --nodaemon"; \
       echo "[program:xrdp]"; \
