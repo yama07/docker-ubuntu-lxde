@@ -1,5 +1,9 @@
 # docker-ubuntu-lxde XRDP
 
+![Docker Automated build](https://img.shields.io/docker/automated/yama07/docker-ubuntu-lxde?style=for-the-badge)
+![Docker Build Status](https://img.shields.io/docker/build/yama07/docker-ubuntu-lxde?style=for-the-badge)
+![Docker Pulls](https://img.shields.io/docker/pulls/yama07/docker-ubuntu-lxde?style=for-the-badge)
+
 ## What is this?
 
 DockerによるUbuntuのLXDEデスクトップ環境です。
