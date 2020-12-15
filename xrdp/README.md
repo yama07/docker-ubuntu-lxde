@@ -1,8 +1,8 @@
 # docker-ubuntu-lxde XRDP
 
-![Docker Automated build](https://img.shields.io/docker/automated/yama07/docker-ubuntu-lxde?style=for-the-badge)
-![Docker Build Status](https://img.shields.io/docker/build/yama07/docker-ubuntu-lxde?style=for-the-badge)
-![Docker Pulls](https://img.shields.io/docker/pulls/yama07/docker-ubuntu-lxde?style=for-the-badge)
+[![Docker Automated build](https://img.shields.io/docker/automated/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
+[![Docker Build Status](https://img.shields.io/docker/build/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
+[![Docker Pulls](https://img.shields.io/docker/pulls/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
 
 ## What is this?
 
