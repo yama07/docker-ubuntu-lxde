@@ -18,6 +18,7 @@ DockerによるUbuntuのLXDEデスクトップ環境です。
 - `ubuntu16.04_ja`: Ubuntu16.04ベース [(xrdp/Dockerfile.ubuntu16.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu16.04)
 - `ubuntu18.04_ja`, `latest`: Ubuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
 - `ubuntu18.04-pulseaudio_ja`: 音声転送可能なUbuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
+- `ubuntu20.04_ja`, `latest`: Ubuntu20.04ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
 
 ## How to use
 
@@ -31,7 +32,7 @@ $ docker run --rm -it \
     -u $(id -u):$(id -g) \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
-    yama07/docker-ubuntu-lxde:ubuntu18.04_ja
+    yama07/docker-ubuntu-lxde:ubuntu20.04_ja
 ```
 
 オプションは以下の通りです。
@@ -65,7 +66,7 @@ Dockerイメージのビルド方法は以下の通りです。
 ```
 $ git clone https://github.com/yama07/docker-ubuntu-lxde.git
 $ docker build \
-    -t lxde_xrdp:ubuntu18.04_ja \
-    -f ./xrdp/Dockerfile.ubuntu18.04 \
+    -t lxde_xrdp:ubuntu20.04_ja \
+    -f ./xrdp/Dockerfile.ubuntu20.04 \
     ./xrdp
 ```
