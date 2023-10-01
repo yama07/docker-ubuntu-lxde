@@ -1,0 +1,26 @@
+name: Update Docker Hub Description
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - xrdp/README.md
+      - .github/workflows/dockerhub-description.yml
+
+jobs:
+  update_dockerhub_description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde
+          short-description: Ubuntu + LXDE on Docker
+          readme-filepath: xrdp/README.md
+          enable-url-completion: true
