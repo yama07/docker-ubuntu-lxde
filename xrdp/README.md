@@ -1,30 +1,33 @@
 # docker-ubuntu-lxde XRDP
 
-[![Docker Automated build](https://img.shields.io/docker/automated/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
-[![Docker Build Status](https://img.shields.io/docker/build/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
 [![Docker Pulls](https://img.shields.io/docker/pulls/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)
+[![GitHub](https://img.shields.io/github/license/yama07/docker-ubuntu-lxde?style=for-the-badge)](https://github.com/yama07/docker-ubuntu-lxde)
 
 ## What is this?
 
-DockerによるUbuntuのLXDEデスクトップ環境です。
-リモートデスクトップとしてRDP(xrdp)を使用します。
+Docker による Ubuntu の LXDE デスクトップ環境です。
+リモートデスクトップとして RDP(xrdp)を使用します。
 
-日本語環境(ibus-mozcによる日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
+日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
 
 ![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu18.04_ja.png)
 
 ### Supported tags
 
-- `ubuntu16.04_ja`: Ubuntu16.04ベース [(xrdp/Dockerfile.ubuntu16.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu16.04)
-- `ubuntu18.04_ja`, `latest`: Ubuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
-- `ubuntu18.04-pulseaudio_ja`: 音声転送可能なUbuntu18.04ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
-- `ubuntu20.04_ja`, `latest`: Ubuntu20.04ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
+- ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
+  `ubuntu16.04_ja`: Ubuntu16.04 ベース [(xrdp/Dockerfile.ubuntu16.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu16.04)
+- ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
+  `ubuntu18.04_ja`, `latest`: Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
+- ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
+  `ubuntu18.04-pulseaudio_ja`: 音声転送可能な Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
+- `20.04_ja`, `focal_ja`, `latest`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
+- `20.04-pulseaudio_ja`, `focal-pulseaudio_ja`: 音声転送可能な Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_pulseaudio)
 
 ## How to use
 
-### Dockerコンテナの起動
+### Docker コンテナの起動
 
-Dockerコンテナの起動方法は以下の通りです。
+Docker コンテナの起動方法は以下の通りです。
 
 ```
 $ docker run --rm -it \
@@ -38,29 +41,29 @@ $ docker run --rm -it \
 オプションは以下の通りです。
 
 - `-p port:3389`
-クライアントから接続されるポートを`port`に設定してください。
+  クライアントから接続されるポートを`port`に設定してください。
 - `-u user:group`
-コンテナを起動するUIDを`user`に、GIDを`group`に設定してください。
-指定しない場合は、rootユーザ(UID=0,GID=0)として起動します。
-なお、rootユーザとして起動した場合は、日本語入力(mozc)が利用できません。
+  コンテナを起動する UID を`user`に、GID を`group`に設定してください。
+  指定しない場合は、root ユーザ(UID=0,GID=0)として起動します。
+  なお、root ユーザとして起動した場合は、日本語入力(mozc)が利用できません。
 - `-e USER=loginUser`
-RDPによるログインユーザを`loginUser`に設定してください。
-指定しない場合は、“developer”となります。ただし、rootユーザとしてコンテナを起動した際は“root”となります。
+  RDP によるログインユーザを`loginUser`に設定してください。
+  指定しない場合は、“developer”となります。ただし、root ユーザとしてコンテナを起動した際は“root”となります。
 - `-e PASSWD=loginPasswd`
-RDPによるログインパスワードを`loginPasswd`に設定してください。
-指定しない場合は、“xrdppasswd”となります。
+  RDP によるログインパスワードを`loginPasswd`に設定してください。
+  指定しない場合は、“xrdppasswd”となります。
 
-mozcで「変換エンジンプログラムの起動に失敗しました。」とエラーが発生した場合は、`--privileged`オプションを付けることで成功する可能性があります。
+mozc で「変換エンジンプログラムの起動に失敗しました。」とエラーが発生した場合は、`--privileged`オプションを付けることで成功する可能性があります。
 
 ### クライアントからの接続
 
-docker run後に、リモートデスクトップアプリケーション（Macの場合は「Microsoft Remote Desktop」、Linuxの場合は「xfreerdp」や「Remmina」等）で接続してください。
+docker run 後に、リモートデスクトップアプリケーション（Mac の場合は「Microsoft Remote Desktop」、Linux の場合は「xfreerdp」や「Remmina」等）で接続してください。
 
-この際、接続先は(DockerホストのIP):(`-p`オプションで指定した`port`)、ユーザは`-e USER`で指定した`loginUser`、パスワードは`-e PASSWD`で指定した`loginPasswd`を指定してください。
+この際、接続先は(Docker ホストの IP):(`-p`オプションで指定した`port`)、ユーザは`-e USER`で指定した`loginUser`、パスワードは`-e PASSWD`で指定した`loginPasswd`を指定してください。
 
 ## How to build
 
-Dockerイメージのビルド方法は以下の通りです。
+Docker イメージのビルド方法は以下の通りです。
 （イメージの名前やタグは適宜変更してください。）
 
 ```
