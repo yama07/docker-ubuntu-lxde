@@ -20,9 +20,12 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
   `ubuntu18.04_ja`, `latest`: Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
 - ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
   `ubuntu18.04-pulseaudio_ja`: 音声転送可能な Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
-- `20.04_ja`, `focal_ja`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
-- `20.04-pulseaudio_ja`, `focal-pulseaudio_ja`: 音声転送可能な Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_pulseaudio)
-- `22.04_ja`, `jammy_ja`, `latest`: Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
+- ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/yama07/docker-ubuntu-lxde/xrdp-ubuntu20.04.yml?style=flat-square)
+  `20.04_ja`, `focal_ja`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
+- ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/yama07/docker-ubuntu-lxde/xrdp-ubuntu20.04_pulseaudio.yml?style=flat-square)
+  `20.04-pulseaudio_ja`, `focal-pulseaudio_ja`: 音声転送可能な Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_pulseaudio)
+- ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/yama07/docker-ubuntu-lxde/xrdp-ubuntu22.04.yml?style=flat-square)
+  `22.04_ja`, `jammy_ja`, `latest`: Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
 
 ## How to use
 
