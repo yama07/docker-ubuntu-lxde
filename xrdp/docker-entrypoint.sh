@@ -41,9 +41,9 @@ if (( $# == 0 )); then
 
     set -- /usr/bin/supervisord -c /etc/supervisor/xrdp.conf
     if [[ $USER_ID != "0" ]]; then
-        [[ ! -e /usr/local/bin/_gosu ]] && \
-            sudo install -g $GROUP_ID -m 4750 $(which gosu) /usr/local/bin/_gosu
-        set -- /usr/local/bin/_gosu root "$@"
+        [[ ! -e /usr/local/bin/_alt-su ]] && \
+            sudo install -g $GROUP_ID -m 4750 $(which gosu || which su-exec) /usr/local/bin/_alt-su
+        set -- /usr/local/bin/_alt-su root "$@"
     fi
 fi
 unset PASSWD
