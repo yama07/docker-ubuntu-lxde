@@ -20,8 +20,9 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
   `ubuntu18.04_ja`, `latest`: Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04)
 - ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
   `ubuntu18.04-pulseaudio_ja`: 音声転送可能な Ubuntu18.04 ベース [(xrdp/Dockerfile.ubuntu18.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu18.04_pulseaudio)
-- `20.04_ja`, `focal_ja`, `latest`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
+- `20.04_ja`, `focal_ja`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
 - `20.04-pulseaudio_ja`, `focal-pulseaudio_ja`: 音声転送可能な Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_pulseaudio)
+- `22.04_ja`, `jammy_ja`, `latest`: Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
 
 ## How to use
 
@@ -35,7 +36,7 @@ $ docker run --rm -it \
     -u $(id -u):$(id -g) \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
-    yama07/docker-ubuntu-lxde:ubuntu20.04_ja
+    yama07/docker-ubuntu-lxde:ubuntu22.04_ja
 ```
 
 オプションは以下の通りです。
@@ -69,7 +70,7 @@ Docker イメージのビルド方法は以下の通りです。
 ```
 $ git clone https://github.com/yama07/docker-ubuntu-lxde.git
 $ docker build \
-    -t lxde_xrdp:ubuntu20.04_ja \
-    -f ./xrdp/Dockerfile.ubuntu20.04 \
+    -t lxde_xrdp:ubuntu22.04_ja \
+    -f ./xrdp/Dockerfile.ubuntu22.04 \
     ./xrdp
 ```
