@@ -1,6 +1,6 @@
 name: Publish Docker image xrdp/ubuntu20.04_pulseaudio
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, workflow_call]
 
 jobs:
   push_to_registry:

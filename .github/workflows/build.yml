@@ -1,0 +1,21 @@
+name: Publish all Docker images
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  xrdp-ubuntu20_04:
+    uses: ./.github/workflows/xrdp-ubuntu20.04.yml
+
+  xrdp-ubuntu20_04_pulseaudio:
+    needs: [xrdp-ubuntu20_04]
+    uses: ./.github/workflows/xrdp-ubuntu20.04_pulseaudio.yml
+
+  xrdp-ubuntu22_04:
+    uses: ./.github/workflows/xrdp-ubuntu22.04.yml
+
+  xrdp-ubuntu22_04_pulseaudio:
+    needs: [xrdp-ubuntu22_04]
+    uses: ./.github/workflows/xrdp-ubuntu22.04_pulseaudio.yml

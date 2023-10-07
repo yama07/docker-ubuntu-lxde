@@ -1,6 +1,6 @@
 name: Publish Docker image xrdp/ubuntu22.04
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, workflow_call]
 
 jobs:
   push_to_registry:
