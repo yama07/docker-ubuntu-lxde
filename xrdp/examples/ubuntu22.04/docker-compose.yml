@@ -1,0 +1,14 @@
+version: "3"
+services:
+  desktop:
+    image: docker-ubuntu-lxde:22.04-dev_ja
+    build: .
+    user: 1000:1000 ## $(id -u):$(id -g)
+    ports:
+      - 3389:3389
+    environment:
+      - USER=yama07
+      - PASSWD=mypasswd
+    volumes:
+      - ${PWD}/home:/home/yama07
+    shm_size: 2gb
