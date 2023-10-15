@@ -10,7 +10,7 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 
 日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
 
-![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu18.04_ja.png)
+![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu22.04_ja.png)
 
 ### Supported tags
 
@@ -41,7 +41,7 @@ $ docker run --rm -it \
     -u $(id -u):$(id -g) \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
-    yama07/docker-ubuntu-lxde:ubuntu22.04_ja
+    yama07/docker-ubuntu-lxde:ubuntu20.04_ja
 ```
 
 オプションは以下の通りです。
@@ -54,18 +54,30 @@ $ docker run --rm -it \
   なお、root ユーザとして起動した場合は、日本語入力(mozc)が利用できません。
 - `-e USER=loginUser`
   RDP によるログインユーザを`loginUser`に設定してください。
-  指定しない場合は、“developer”となります。ただし、root ユーザとしてコンテナを起動した際は“root”となります。
+  指定しない場合は、"developer"となります。ただし、root ユーザとしてコンテナを起動した際は"root"となります。
 - `-e PASSWD=loginPasswd`
   RDP によるログインパスワードを`loginPasswd`に設定してください。
-  指定しない場合は、“xrdppasswd”となります。
+  指定しない場合は、"xrdppasswd"となります。
 
-mozc で「変換エンジンプログラムの起動に失敗しました。」とエラーが発生した場合は、`--privileged`オプションを付けることで成功する可能性があります。
+接続後にログイン画面やデスクトップ画面が表示されない場合、`--privileged`オプションを付けることで成功する可能性があります。
+
+コンテナ内のデスクトップ環境において、ほとんどの個人設定はホームディレクトリに保存されるため、 `-v ${HOME}/container_home:/home/yama07` のようにホームディレクトリをマウントするオプションを追加すれば、コンテナを停止＆起動しても個人の設定が維持されます。
+ただし、マウントするディレクトリを**起動前に**作成しておかないと、Permission エラーが発生するため注意してください。
 
 ### クライアントからの接続
 
 docker run 後に、リモートデスクトップアプリケーション（Mac の場合は「Microsoft Remote Desktop」、Linux の場合は「xfreerdp」や「Remmina」等）で接続してください。
 
 この際、接続先は(Docker ホストの IP):(`-p`オプションで指定した`port`)、ユーザは`-e USER`で指定した`loginUser`、パスワードは`-e PASSWD`で指定した`loginPasswd`を指定してください。
+
+### カスタマイズ
+
+この Docker イメージはあまりパッケージをインストールしていないため、そのままでは利用範囲が限られます。
+そのため、リポジトリ内の Dockerfile を参考にして独自の Dockerfile を作成するか、Docker Hub に公開している Docker イメージをベースイメージとして利用してカスタマイズすることをお勧めします。
+
+カスタマイズしたイメージを作成するサンプルが[こちら](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/examples/ubuntu22.04)にありますので、ご参考にしてください。
+
+![カスタマイズ例](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-example-22.04-app.png)
 
 ## How to build
 
@@ -75,7 +87,7 @@ Docker イメージのビルド方法は以下の通りです。
 ```
 $ git clone https://github.com/yama07/docker-ubuntu-lxde.git
 $ docker build \
-    -t lxde_xrdp:ubuntu22.04_ja \
-    -f ./xrdp/Dockerfile.ubuntu22.04 \
+    -t lxde_xrdp:ubuntu20.04_ja \
+    -f ./xrdp/Dockerfile.ubuntu20.04 \
     ./xrdp
 ```
