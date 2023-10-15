@@ -2,13 +2,13 @@
 
 ## What is this?
 
-Docker Hub で公開している Docker イメージを利用した、カスタマイズ例です。
+[Docker Hub で公開している Docker イメージ](https://hub.docker.com/r/yama07/docker-ubuntu-lxde)をベースイメージとして利用した、カスタマイズ例です。
 
-- ログイン画面のカスタマイズ
+- ログイン画面のカスタマイズ  
   ![カスタマイズ例 ログイン画面](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-example-22.04-login.png)
-- デスクトップテーマのカスタマイズ
+- デスクトップテーマのカスタマイズ  
   ![カスタマイズ例 テーマ](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-example-22.04.png)
-- アプリケーションのインストール
+- アプリケーションのインストール  
   ![カスタマイズ例 アプリ](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-example-22.04-app.png)
 
 ## How to use
