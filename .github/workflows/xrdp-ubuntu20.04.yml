@@ -32,4 +32,3 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:20.04_ja
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:focal_ja
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:latest
