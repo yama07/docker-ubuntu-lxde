@@ -1,0 +1,20 @@
+name: Publish xrdp/ubuntu22.04 Docker images
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "22 04 1,15 * *"
+
+jobs:
+  xrdp-ubuntu22_04:
+    uses: ./.github/workflows/xrdp-ubuntu22.04.yml
+    secrets: inherit
+
+  xrdp-ubuntu22_04_pulseaudio:
+    needs: [xrdp-ubuntu22_04]
+    uses: ./.github/workflows/xrdp-ubuntu22.04_pulseaudio.yml
+    secrets: inherit
+
+  xrdp-ubuntu22_04_core:
+    uses: ./.github/workflows/xrdp-ubuntu22.04_core.yml
+    secrets: inherit
