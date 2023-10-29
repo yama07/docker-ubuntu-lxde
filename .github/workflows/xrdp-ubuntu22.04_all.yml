@@ -15,6 +15,6 @@ jobs:
     uses: ./.github/workflows/xrdp-ubuntu22.04_pulseaudio.yml
     secrets: inherit
 
-  xrdp-ubuntu22_04_core:
-    uses: ./.github/workflows/xrdp-ubuntu22.04_core.yml
+  xrdp-ubuntu22_04_slim:
+    uses: ./.github/workflows/xrdp-ubuntu22.04_slim.yml
     secrets: inherit

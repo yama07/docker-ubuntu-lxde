@@ -15,6 +15,6 @@ jobs:
     uses: ./.github/workflows/xrdp-ubuntu20.04_pulseaudio.yml
     secrets: inherit
 
-  xrdp-ubuntu20_04_core:
-    uses: ./.github/workflows/xrdp-ubuntu20.04_core.yml
+  xrdp-ubuntu20_04_slim:
+    uses: ./.github/workflows/xrdp-ubuntu20.04_slim.yml
     secrets: inherit
