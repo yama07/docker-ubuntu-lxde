@@ -79,12 +79,13 @@ RUN { \
 # Set lightdm conf
 RUN { \
         echo '#!/bin/sh'; \
-        echo 'exec /usr/bin/Xvfb :0 -screen 0 1024x768x24 -nolisten tcp'; \
+        echo 'RESOLUTION="$1"'; \
+        echo 'exec /usr/bin/Xvfb :0 -screen 0 "$RESOLUTION" -nolisten tcp'; \
     } > /usr/local/bin/start-Xvfb.sh \
     && chmod +x /usr/local/bin/start-Xvfb.sh \
     && { \
         echo '[Seat:*]'; \
-        echo 'xserver-command=/usr/local/bin/start-Xvfb.sh'; \
+        echo 'xserver-command=/usr/local/bin/start-Xvfb.sh "${RESOLUTION}"'; \
         echo 'autologin-user=${USER}'; \
         echo 'autologin-user-timeout=0'; \
         echo 'autologin-session=LXDE'; \
