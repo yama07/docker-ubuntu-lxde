@@ -35,10 +35,10 @@ if (( $# == 0 )); then
     echo ${USER}:${PASSWD} | sudo chpasswd
     sudo x11vnc -storepasswd "${PASSWD}" /etc/x11vnc.passwd
 
-    envsubst < /etc/supervisor/conf.d/desktop.conf.template | sudo tee /etc/supervisor/conf.d/desktop.conf > /dev/null
+    envsubst < /etc/supervisor/vnc.conf.template  | sudo tee /etc/supervisor/vnc.conf > /dev/null
     envsubst < /etc/lightdm/lightdm.conf.template | sudo tee /etc/lightdm/lightdm.conf > /dev/null
 
-    set -- /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+    set -- /usr/bin/supervisord -c /etc/supervisor/vnc.conf
     if [[ $USER_ID != "0" ]]; then
         [[ ! -e /usr/local/bin/_alt-su ]] && \
             sudo install -g $GROUP_ID -m 4750 $(which gosu || which su-exec) /usr/local/bin/_alt-su

@@ -54,42 +54,40 @@ RUN install -o root -g root -m 0755 -d /var/run/dbus \
 
 # Set supervisord conf
 RUN { \
-      echo "[supervisord]"; \
-      echo "user=root"; \
-      echo "nodaemon=true"; \
-      echo "logfile=/var/log/supervisor/supervisord.log"; \
-      echo "childlogdir=/var/log/supervisor"; \
-    } > /etc/supervisor/conf.d/supervisord.conf \
-    && { \
+      echo '[supervisord]'; \
+      echo 'user=root'; \
+      echo 'nodaemon=true'; \
+      echo 'logfile=/var/log/supervisor/supervisord.log'; \
+      echo 'childlogdir=/var/log/supervisor'; \
       echo '[program:dbus]'; \
       echo 'priority=10'; \
       echo 'command=/usr/bin/dbus-daemon --system --nofork --nopidfile'; \
       echo '[program:lightdm]'; \
       echo 'priority=20'; \
-      echo 'command=/bin/bash -c "sleep 1s && /usr/sbin/lightdm"'; \
+      echo 'startretries=5'; \
+      echo 'command=/usr/sbin/lightdm'; \
       echo '[program:x11vnc]'; \
       echo 'priority=30'; \
+      echo 'startretries=5'; \
       echo 'command=/usr/bin/x11vnc -display :0 -auth /var/run/lightdm/root/:0 -rfbauth /etc/x11vnc.passwd -xkb -forever -shared -repeat -capslock'; \
-      echo 'autorestart=true'; \
       echo '[program:novnc]'; \
       echo 'priority=40'; \
-      echo 'command=/usr/share/novnc/utils/launch.sh --vnc localhost:5900 --listen 80'; \
       echo 'user=${USER}'; \
-      echo 'autorestart=true'; \
-    } > /etc/supervisor/conf.d/desktop.conf.template 
+      echo 'command=/usr/share/novnc/utils/launch.sh --vnc localhost:5900 --listen 80'; \
+    } > /etc/supervisor/vnc.conf.template
 
 # Set lightdm conf
 RUN { \
-        echo "#!/bin/sh"; \
-        echo "exec /usr/bin/Xvfb :0 -screen 0 1024x768x24 -nolisten tcp"; \
+        echo '#!/bin/sh'; \
+        echo 'exec /usr/bin/Xvfb :0 -screen 0 1024x768x24 -nolisten tcp'; \
     } > /usr/local/bin/start-Xvfb.sh \
     && chmod +x /usr/local/bin/start-Xvfb.sh \
     && { \
-        echo "[Seat:*]"; \
-        echo "xserver-command=/usr/local/bin/start-Xvfb.sh"; \
+        echo '[Seat:*]'; \
+        echo 'xserver-command=/usr/local/bin/start-Xvfb.sh'; \
         echo 'autologin-user=${USER}'; \
-        echo "autologin-user-timeout=0"; \
-        echo "autologin-session=LXDE"; \
+        echo 'autologin-user-timeout=0'; \
+        echo 'autologin-session=LXDE'; \
     } > /etc/lightdm/lightdm.conf.template
 
 # Copy entrypoint script
