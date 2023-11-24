@@ -39,7 +39,7 @@ ENV LANG=ja_JP.UTF-8 \
 
 # Set default vars
 ENV DEFAULT_USER=developer \
-    DEFAULT_PASSWD=xrdppasswd
+    DEFAULT_PASSWD=vncpasswd
 
 # Set sudoers for any user
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/ALL
