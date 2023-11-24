@@ -1,0 +1,15 @@
+name: Publish vnc/ubuntu20.04 Docker images
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 04 1,15 * *"
+
+jobs:
+  vnc-ubuntu20_04:
+    uses: ./.github/workflows/vnc-ubuntu20.04.yml
+    secrets: inherit
+
+  vnc-ubuntu20_04_slim:
+    uses: ./.github/workflows/vnc-ubuntu20.04_slim.yml
+    secrets: inherit
