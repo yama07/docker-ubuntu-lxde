@@ -64,7 +64,8 @@ RUN echo "startlxde" > /etc/skel/.xsession \
     && install -o root -g root -m 0644 /dev/null /etc/securetty \
     && sed -i 's|.*pam_systemd.so|#&|g' /etc/pam.d/common-session \
     && sed -i 's|\[Session\]|&\npolkit/command=|' /etc/xdg/lxsession/LXDE/desktop.conf \
-    && usermod -aG ssl-cert xrdp
+    && usermod -aG ssl-cert xrdp \
+    && ln -s /usr/share/lxde/wallpapers/lxde_blue.jpg /etc/alternatives/desktop-background
 
 # Set supervisord conf for xrdp service
 RUN { \
