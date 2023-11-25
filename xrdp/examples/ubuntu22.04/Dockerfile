@@ -65,6 +65,7 @@ RUN apt-get update \
         less vim emacs nano nkf tree \
         git tmux zip \
         cifs-utils \
+        fonts-noto-color-emoji \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
