@@ -29,6 +29,8 @@ jobs:
           context: xrdp
           file: xrdp/Dockerfile.ubuntu20.04_slim
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            ADDITIONAL_APT_GET_OPTS=--no-install-recommends
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:20.04-xrdp-slim_ja
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:focal-xrdp-slim_ja
