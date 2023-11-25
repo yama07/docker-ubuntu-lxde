@@ -10,20 +10,20 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 
 日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
 
-![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu22.04_ja.png)
+![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu20.04_ja.png)
 
 ### Supported tags
 
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp_ja)
   `22.04-xrdp_ja`, `jammy-xrdp_ja`, `latest-xrdp`, `latest`: Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp-slim_ja)
-  `22.04-xrdp-slim_ja`, `jammy-xrdp-slim_ja`: サイズを軽量化した Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04_slim)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04_slim)
+  `22.04-xrdp-slim_ja`, `jammy-xrdp-slim_ja`: サイズを軽量化した Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp-pulseaudio_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp-pulseaudio_ja)
   `22.04-xrdp-pulseaudio_ja`, `jammy-xrdp-pulseaudio_ja`: 音声転送可能な Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04_pulseaudio)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/20.04-xrdp_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=20.04-xrdp_ja)
   `20.04-xrdp_ja`, `focal-xrdp_ja`: Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/20.04-xrdp-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=20.04-xrdp-slim_ja)
-  `20.04-xrdp-slim_ja`, `focal-xrdp-slim_ja`: サイズを軽量化した Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_slim)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_slim)
+  `20.04-xrdp-slim_ja`, `focal-xrdp-slim_ja`: サイズを軽量化した Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/20.04-xrdp-pulseaudio_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=20.04-xrdp-pulseaudio_ja)
   `20.04-xrdp-pulseaudio_ja`, `focal-xrdp-pulseaudio_ja`: 音声転送可能な Ubuntu20.04 ベース [(xrdp/Dockerfile.ubuntu20.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu20.04_pulseaudio)
 - ![Static Badge](https://img.shields.io/badge/EOL-darkred?style=flat-square)
@@ -92,6 +92,13 @@ Docker イメージのビルド方法は以下の通りです。
 $ git clone https://github.com/yama07/docker-ubuntu-lxde.git
 $ docker build \
     -t lxde_xrdp:ubuntu20.04_ja \
+    -f ./xrdp/Dockerfile.ubuntu20.04 \
+    ./xrdp
+
+## Slim image
+$ docker build \
+    --build-arg ADDITIONAL_APT_GET_OPTS=--no-install-recommends \
+    -t lxde_xrdp:ubuntu20.04-slim_ja \
     -f ./xrdp/Dockerfile.ubuntu20.04 \
     ./xrdp
 ```
