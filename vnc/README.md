@@ -13,7 +13,7 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 ![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/VNC-ubuntu20.04_ja.png)
 ![スクリーンショット](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/noVNC-ubuntu20.04_ja.png)
 
-### Supported tags
+## Supported tags
 
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/20.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=20.04-vnc_ja)
   `20.04-vnc_ja`, `focal-vnc_ja`, `latest-vnc`: Ubuntu20.04 ベース [(vnc/Dockerfile.ubuntu20.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu20.04)
