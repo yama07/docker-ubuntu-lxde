@@ -68,8 +68,7 @@ RUN { \
       echo 'command=/usr/bin/dbus-daemon --system --nofork --nopidfile'; \
       echo '[program:lightdm]'; \
       echo 'priority=20'; \
-      echo 'startretries=5'; \
-      echo 'command=/usr/sbin/lightdm'; \
+      echo 'command=/usr/local/bin/start-lightdm.sh'; \
       echo '[program:x11vnc]'; \
       echo 'priority=30'; \
       echo 'startretries=5'; \
@@ -80,14 +79,27 @@ RUN { \
       echo 'command=/usr/share/novnc/utils/launch.sh --vnc localhost:5900 --listen 80'; \
     } > /etc/supervisor/vnc.conf.template
 
-# Set lightdm conf
+# Set scripts and configuration for lightdm and Xvfb
 RUN { \
+        # This script waits for D-Bus to be ready, then starts lightdm
+        echo '#!/bin/sh'; \
+        echo 'while true'; \
+        echo 'do'; \
+        echo '    busctl status > /dev/null 2>&1 && break'; \
+        echo '    sleep 0.1'; \
+        echo 'done'; \
+        echo 'exec /usr/sbin/lightdm'; \
+    } > /usr/local/bin/start-lightdm.sh \
+    && chmod +x /usr/local/bin/start-lightdm.sh \
+    && { \
+        # This script starts Xvfb with the given resolution
         echo '#!/bin/sh'; \
         echo 'RESOLUTION="$1"'; \
         echo 'exec /usr/bin/Xvfb :0 -screen 0 "$RESOLUTION" -nolisten tcp'; \
     } > /usr/local/bin/start-Xvfb.sh \
     && chmod +x /usr/local/bin/start-Xvfb.sh \
     && { \
+        # This is a template for lightdm configuration
         echo '[Seat:*]'; \
         echo 'xserver-command=/usr/local/bin/start-Xvfb.sh "${RESOLUTION}"'; \
         echo 'autologin-user=${USER}'; \
