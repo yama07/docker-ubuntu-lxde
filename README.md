@@ -82,11 +82,14 @@ VNC クライアント（VNC Viewer）で`<DockerホストのIPアドレス>:590
 
 ## Screenshot
 
-XRDP
+### XRDP
+
 ![XRDP screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu20.04_ja.png)
 
-VNC
+### VNC
+
 ![VNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/VNC-ubuntu20.04_ja.png)
 
-noVNC
+### noVNC
+
 ![noVNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/noVNC-ubuntu20.04_ja.png)
