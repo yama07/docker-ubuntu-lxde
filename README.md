@@ -15,6 +15,11 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 
 日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
 
+<div style="display: flex; justify-content: center; align-items: center">
+  <img src="https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/XRDP-ubuntu20.04_ja.png"  width="50%" alt="XRDP Screenshot" />
+  <img src="https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/VNC-ubuntu20.04_ja.png" width="50%" alt="VNC Screenshot" />
+</div>
+
 ## Supported tags
 
 ### XRDP
