@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - xrdp/README.md
+      - README.md
       - .github/workflows/dockerhub-description.yml
 
 jobs:
@@ -22,5 +22,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde
           short-description: Ubuntu based LXDE desktop environment with Japanese language support.
-          readme-filepath: xrdp/README.md
+          readme-filepath: README.md
           enable-url-completion: true
