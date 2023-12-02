@@ -53,7 +53,7 @@ $ docker run -it \
     -u $(id -u):$(id -g) \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
-    yama07/docker-ubuntu-lxde:22.04-xrdp_ja
+    yama07/docker-ubuntu-lxde:20.04-xrdp_ja
 ```
 
 リモートデスクトップアプリケーションで `<DockerホストのIPアドレス>:3389`に接続して下さい。
