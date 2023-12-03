@@ -17,6 +17,9 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 
 ## Supported tags
 
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/yama07/docker-ubuntu-lxde/.github%2Fworkflows%2Fubuntu20.04_all.yml?logo=githubactions&label=Ubuntu20.04%20based%20Docker%20images)](https://github.com/yama07/docker-ubuntu-lxde/actions/workflows/ubuntu20.04_all.yml)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/yama07/docker-ubuntu-lxde/.github%2Fworkflows%2Fubuntu22.04_all.yml?logo=githubactions&label=Ubuntu22.04%20based%20Docker%20images)](https://github.com/yama07/docker-ubuntu-lxde/actions/workflows/ubuntu22.04_all.yml)
+
 ### XRDP
 
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp_ja)
