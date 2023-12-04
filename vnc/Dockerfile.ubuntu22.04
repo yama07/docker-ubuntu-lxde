@@ -97,11 +97,14 @@ RUN { \
 
 # Set scripts and configuration for lightdm and Xvfb
 RUN { \
-        # This script waits for D-Bus to be ready, then starts lightdm
+        # This script waits for D-Bus to be ready, then starts lightdm.
+        # If lightdm starts before D-Bus is active, the startup of lightdm may fail.
+        # Therefore, it is necessary to wait until D-Bus is ready before starting lightdm.
+        # This script was created to solve this problem.
         echo '#!/bin/sh'; \
         echo 'while true'; \
         echo 'do'; \
-        echo '    busctl status > /dev/null 2>&1 && break'; \
+        echo '    busctl > /dev/null 2>&1 && break'; \
         echo '    sleep 0.1'; \
         echo 'done'; \
         echo 'exec /usr/sbin/lightdm'; \
