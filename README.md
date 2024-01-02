@@ -13,7 +13,7 @@
 
 ## What is this?
 
-Docker による Ubuntu の LXDE デスクトップ環境です。
+Ubuntu の LXDE デスクトップ環境の Docker image です。
 リモートデスクトップとして RDP(xrdp)や VNC(x11vnc, noVNC)を使用します。
 
 日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
@@ -62,6 +62,8 @@ $ docker run -it \
 リモートデスクトップアプリケーションで `<DockerホストのIPアドレス>:3389`に接続して下さい。
 ユーザー名は`yama07`、パスワードは`mypasswd`です。
 
+接続後にログイン画面やデスクトップ画面が表示されない場合、`--privileged`オプションを付けることで成功する可能性があります。
+
 パラメータの詳細などは、[README | XRDP Docker image](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/README.md)を参照して下さい。
 
 ### VNC
@@ -81,9 +83,11 @@ VNC クライアント（VNC Viewer）で`<DockerホストのIPアドレス>:590
 あるいは、Web ブラウザで`http://<DockerホストのIPアドレス>:8080/vnc.html`にアクセスして下さい。
 パスワードは`mypasswd`です。
 
+接続後にデスクトップ画面が表示されない場合、`--privileged`オプションを付けることで成功する可能性があります。
+
 パラメータの詳細などは、[README | VNC/noVNC Docker image](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/README.md)を参照して下さい。
 
-## Screenshot
+## Screenshots
 
 ### XRDP
 
