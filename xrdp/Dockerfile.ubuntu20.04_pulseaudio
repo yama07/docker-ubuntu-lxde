@@ -14,7 +14,7 @@ RUN curl -s -L https://github.com/neutrinolabs/pulseaudio-module-xrdp/archive/v0
 
 ####################################
 
-FROM yama07/docker-ubuntu-lxde:20.04_ja
+FROM yama07/docker-ubuntu-lxde:20.04-xrdp_ja
 
 COPY --from=build \
     /opt/pulseaudio-module-xrdp/src/.libs/*.so /usr/libexec/pulseaudio-module-xrdp/
