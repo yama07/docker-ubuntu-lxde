@@ -29,7 +29,7 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       im-config \
       language-pack-ja \
       language-pack-ja-base \
-      lxde \
+      lxqt \
       sudo \
       supervisor \
       tzdata \
@@ -37,7 +37,6 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       xorgxrdp \
       xrdp \
     && apt-get clean \
-    && rm -rf /var/cache/apt/archives/* \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build \
@@ -67,15 +66,18 @@ RUN chmod u+s /usr/sbin/useradd \
 # Expose RDP port
 EXPOSE 3389
 
-RUN echo "startlxde" > /etc/skel/.xsession \
+# Setup
+RUN echo "startlxqt" > /etc/skel/.xsession \
     && install -o root -g xrdp -m 2775 -d /var/run/xrdp \
     && install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir \
     && install -o root -g root -m 0755 -d /var/run/dbus \
     && install -o root -g root -m 0644 /dev/null /etc/securetty \
-    && sed -i 's|.*pam_systemd.so|#&|g' /etc/pam.d/common-session \
-    && sed -i 's|\[Session\]|&\npolkit/command=|' /etc/xdg/lxsession/LXDE/desktop.conf \
-    && usermod -aG ssl-cert xrdp \
-    && ln -s /usr/share/lxde/wallpapers/lxde_blue.jpg /etc/alternatives/desktop-background
+    && usermod -aG ssl-cert xrdp
+
+# Disable unavailable features
+RUN sed -i 's|.*pam_systemd.so|#&|g' /etc/pam.d/common-session \
+    && sed -i.org 's/plugins=.*/plugins=mainmenu, showdesktop, desktopswitch, quicklaunch, taskbar, tray, statusnotifier, worldclock/' /etc/xdg/lxqt/panel.conf \
+    && mv /etc/xdg/autostart/lxqt-powermanagement.desktop /etc/xdg/autostart/lxqt-powermanagement.desktop.disabled
 
 # Set supervisord conf for xrdp service
 RUN { \
@@ -94,6 +96,5 @@ RUN { \
     } > /etc/supervisor/xrdp.conf
 
 # Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY --chmod=744 docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
