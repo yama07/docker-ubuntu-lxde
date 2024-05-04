@@ -29,7 +29,8 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       im-config \
       language-pack-ja \
       language-pack-ja-base \
-      lxde \
+      lightdm \
+      lxqt \
       net-tools \
       novnc \
       sudo \
@@ -68,9 +69,12 @@ RUN chmod u+s /usr/sbin/useradd \
 EXPOSE 5900
 EXPOSE 80
 
-RUN install -o root -g root -m 0755 -d /var/run/dbus \
-    && sed -i 's|\[Session\]|&\npolkit/command=|' /etc/xdg/lxsession/LXDE/desktop.conf \
-    && ln -s /usr/share/lxde/wallpapers/lxde_green.jpg /etc/alternatives/desktop-background
+# Setup
+RUN install -o root -g root -m 0755 -d /var/run/dbus
+
+# Disable unavailable features
+RUN sed -i.org 's/plugins=.*/plugins=mainmenu, showdesktop, desktopswitch, quicklaunch, taskbar, tray, statusnotifier, worldclock/' /etc/xdg/lxqt/panel.conf \
+    && mv /etc/xdg/autostart/lxqt-powermanagement.desktop /etc/xdg/autostart/lxqt-powermanagement.desktop.disabled
 
 # Set supervisord conf
 RUN { \
@@ -112,6 +116,8 @@ RUN { \
     && chmod +x /usr/local/bin/start-lightdm.sh \
     && { \
         # This script starts Xvfb with the given resolution
+        # Invoking Xvfb directly from lightdm may lead to errors due to unsupported options,
+        # hence this script is used as a wrapper.
         echo '#!/bin/sh'; \
         echo 'RESOLUTION="$1"'; \
         echo 'exec /usr/bin/Xvfb :0 -screen 0 "$RESOLUTION" -nolisten tcp'; \
@@ -123,10 +129,9 @@ RUN { \
         echo 'xserver-command=/usr/local/bin/start-Xvfb.sh "${RESOLUTION}"'; \
         echo 'autologin-user=${USER}'; \
         echo 'autologin-user-timeout=0'; \
-        echo 'autologin-session=LXDE'; \
+        echo 'autologin-session=lxqt'; \
     } > /etc/lightdm/lightdm.conf.template
 
 # Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY --chmod=744 docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
