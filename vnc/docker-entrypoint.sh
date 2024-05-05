@@ -42,7 +42,7 @@ if (( $# == 0 )); then
 
     set -- /usr/bin/supervisord -c /etc/supervisor/vnc.conf
     if [[ $USER_ID != "0" ]]; then
-        [[ ! -e /usr/local/bin/_alt-su ]] && \
+        [[ ! -e /usr/local/bin/_alt-su ]] &&
             sudo install -g $GROUP_ID -m 4750 $(which gosu || which su-exec) /usr/local/bin/_alt-su
         set -- /usr/local/bin/_alt-su root "$@"
     fi

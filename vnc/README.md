@@ -5,7 +5,7 @@
 
 ## What is this?
 
-Docker による Ubuntu の LXDE デスクトップ環境です。
+Docker による Ubuntu の LXDE/LXQt デスクトップ環境です。
 リモートデスクトップとして VNC(x11vnc, noVNC)を使用します。
 
 日本語環境(ibus-mozc による日本語入力可能)かつ、`-u`による一般ユーザ起動においても`sudo`コマンドが使用可能です。
@@ -15,6 +15,10 @@ Docker による Ubuntu の LXDE デスクトップ環境です。
 
 ## Supported tags
 
+- [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-vnc_ja)
+  `24.04-vnc_ja`, `noble-vnc_ja`: Ubuntu24.04 ベース [(vnc/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu24.04)
+- [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-vnc-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-vnc-slim_ja)
+  `24.04-vnc-slim_ja`, `noble-vnc-slim_ja`: サイズを軽量化した Ubuntu24.04 ベース [(vnc/Dockerfile.ubuntu24.04_slim)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu24.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-vnc_ja)
   `22.04-vnc_ja`, `jammy-vnc_ja`, `latest-vnc`: Ubuntu22.04 ベース [(vnc/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-vnc-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-vnc-slim_ja)
