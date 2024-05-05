@@ -30,6 +30,7 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       language-pack-ja \
       language-pack-ja-base \
       lxqt \
+      papirus-icon-theme \
       sudo \
       supervisor \
       tzdata \

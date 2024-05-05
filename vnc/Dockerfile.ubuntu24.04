@@ -33,6 +33,7 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       lxqt \
       net-tools \
       novnc \
+      papirus-icon-theme \
       sudo \
       supervisor \
       tzdata \
