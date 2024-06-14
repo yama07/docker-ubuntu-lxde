@@ -68,7 +68,12 @@ RUN chmod u+s /usr/sbin/useradd \
 EXPOSE 3389
 
 # Setup
-RUN echo "startlxqt" > /etc/skel/.xsession \
+RUN { \
+        echo 'if [[ -d /run/user/$(id -u) ]]; then'; \
+        echo '  export XDG_RUNTIME_DIR=/run/user/$(id -u)'; \
+        echo 'fi'; \
+        echo 'exec dbus-run-session -- startlxqt'; \
+    } > /etc/skel/.xsession \
     && install -o root -g xrdp -m 2775 -d /var/run/xrdp \
     && install -o root -g xrdp -m 3777 -d /var/run/xrdp/sockdir \
     && install -o root -g root -m 0755 -d /var/run/dbus \
