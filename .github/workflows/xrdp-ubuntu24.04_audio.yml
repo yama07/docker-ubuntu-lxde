@@ -1,4 +1,4 @@
-name: Publish Docker image xrdp/ubuntu24.04_pulseaudio
+name: Publish Docker image xrdp/ubuntu24.04_audio
 
 on: [workflow_dispatch, workflow_call]
 
@@ -27,8 +27,8 @@ jobs:
         with:
           push: true
           context: xrdp
-          file: xrdp/Dockerfile.ubuntu24.04_pulseaudio
+          file: xrdp/Dockerfile.ubuntu24.04_audio
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:24.04-xrdp-pulseaudio_ja
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:noble-xrdp-pulseaudio_ja
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:24.04-xrdp-audio_ja
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:noble-xrdp-audio_ja

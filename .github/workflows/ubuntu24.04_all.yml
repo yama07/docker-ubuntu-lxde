@@ -10,9 +10,9 @@ jobs:
     uses: ./.github/workflows/xrdp-ubuntu24.04.yml
     secrets: inherit
 
-  xrdp-ubuntu24_04_pulseaudio:
+  xrdp-ubuntu24_04_audio:
     needs: [xrdp-ubuntu24_04]
-    uses: ./.github/workflows/xrdp-ubuntu24.04_pulseaudio.yml
+    uses: ./.github/workflows/xrdp-ubuntu24.04_audio.yml
     secrets: inherit
 
   xrdp-ubuntu24_04_slim:

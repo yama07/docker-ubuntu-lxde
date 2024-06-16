@@ -23,11 +23,11 @@ Ubuntu の LXDE/LXQt デスクトップ環境の Docker image です。
 ### XRDP
 
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-xrdp_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-xrdp_ja)
-  `24.04-xrdp_ja`, `noble-xrdp_ja`: Ubuntu24.04 ベース [(xrdp/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04)
+  `24.04-xrdp_ja`, `noble-xrdp_ja`: Ubuntu24.04 ベース LXQt [(xrdp/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-xrdp-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-xrdp-slim_ja)
-  `24.04-xrdp-slim_ja`, `noble-xrdp-slim_ja`: サイズを軽量化した Ubuntu24.04 ベース [(xrdp/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04)
-- [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-xrdp-pulseaudio_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-xrdp-pulseaudio_ja)
-  `24.04-xrdp-pulseaudio_ja`, `noble-xrdp-pulseaudio_ja`: 音声転送可能な Ubuntu24.04 ベース [(xrdp/Dockerfile.ubuntu24.04_pulseaudio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04_pulseaudio)
+  `24.04-xrdp-slim_ja`, `noble-xrdp-slim_ja`: サイズを軽量化した Ubuntu24.04 ベース LXQt [(xrdp/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04)
+- [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-xrdp-audio_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-xrdp-audio_ja)
+  `24.04-xrdp-audio_ja`, `noble-xrdp-audio_ja`: 音声転送可能な Ubuntu24.04 ベース LXQt [(xrdp/Dockerfile.ubuntu24.04_audio)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu24.04_audio)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp_ja)
   `22.04-xrdp_ja`, `jammy-xrdp_ja`, `latest-xrdp`, `latest`: Ubuntu22.04 ベース [(xrdp/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/xrdp/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-xrdp-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-xrdp-slim_ja)

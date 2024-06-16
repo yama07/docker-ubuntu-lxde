@@ -1,0 +1,11 @@
+FROM yama07/docker-ubuntu-lxde:24.04-xrdp_ja
+
+RUN \
+    # Disable unavailable pipewire features
+    sed -i -r 's/^( *module.jackdbus-detect = )true$/\1false/' /usr/share/pipewire/pipewire.conf \
+    # Launch the audio server before starting LXQt session
+    && sed -i \
+      -e "/startlxqt/iDISABLE_RTKIT=true PIPEWIRE_LOG_SYSTEMD=false pipewire &" \
+      -e "/startlxqt/iDISABLE_RTKIT=true PIPEWIRE_LOG_SYSTEMD=false pipewire-pulse &" \
+      -e "/startlxqt/iDISABLE_RTKIT=true PIPEWIRE_LOG_SYSTEMD=false wireplumber &" \
+      /etc/skel/.xsession
