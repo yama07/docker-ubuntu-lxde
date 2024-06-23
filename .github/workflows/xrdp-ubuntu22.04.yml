@@ -32,5 +32,3 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:22.04-xrdp_ja
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:jammy-xrdp_ja
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:latest-xrdp
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:latest
