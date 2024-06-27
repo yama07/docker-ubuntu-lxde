@@ -71,7 +71,12 @@ EXPOSE 5900
 EXPOSE 80
 
 # Setup
-RUN install -o root -g root -m 0755 -d /var/run/dbus
+RUN install -o root -g root -m 0755 -d /var/run/dbus \
+    && if [ -e /usr/share/lxqt/wallpapers/origami-light.png ]; then \
+         update-alternatives --install \
+           /usr/share/images/desktop-base/desktop-background desktop-background \
+           /usr/share/lxqt/wallpapers/origami-light.png 99; \
+       fi
 
 # Disable unavailable features
 RUN sed -i.org 's/plugins=.*/plugins=mainmenu, showdesktop, desktopswitch, quicklaunch, taskbar, tray, statusnotifier, worldclock/' /etc/xdg/lxqt/panel.conf \
