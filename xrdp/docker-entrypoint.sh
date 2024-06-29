@@ -40,7 +40,7 @@ if (( $# == 0 )); then
         sudo -u xrdp -g xrdp xrdp-keygen xrdp /etc/xrdp/rsakeys.ini > /dev/null 2>&1
 
     RUNTIME_DIR=/run/user/${USER_ID}
-    [ -e $RUNTIME_DIR ] && rm -rf $RUNTIME_DIR
+    [ -e $RUNTIME_DIR ] && sudo rm -rf $RUNTIME_DIR
     sudo install -o $USER_ID -g $GROUP_ID -m 0700 -d $RUNTIME_DIR
 
     set -- /usr/bin/supervisord -c /etc/supervisor/xrdp.conf
