@@ -40,6 +40,10 @@ if (( $# == 0 )); then
     envsubst < /etc/supervisor/vnc.conf.template  | sudo tee /etc/supervisor/vnc.conf > /dev/null
     envsubst < /etc/lightdm/lightdm.conf.template | sudo tee /etc/lightdm/lightdm.conf > /dev/null
 
+    RUNTIME_DIR=/run/user/${USER_ID}
+    [ -e $RUNTIME_DIR ] && sudo rm -rf $RUNTIME_DIR
+    sudo install -o $USER_ID -g $GROUP_ID -m 0700 -d $RUNTIME_DIR
+
     set -- /usr/bin/supervisord -c /etc/supervisor/vnc.conf
     if [[ $USER_ID != "0" ]]; then
         [[ ! -e /usr/local/bin/_alt-su ]] &&

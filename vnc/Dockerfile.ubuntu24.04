@@ -72,6 +72,12 @@ EXPOSE 80
 
 # Setup
 RUN install -o root -g root -m 0755 -d /var/run/dbus \
+    && { \
+        echo 'if [ -z "$XDG_RUNTIME_DIR" ] && [ -d "/run/user/$(id -u)" ]; then'; \
+        echo '  export XDG_RUNTIME_DIR=/run/user/$(id -u)'; \
+        echo 'fi'; \
+    } > /etc/X11/Xsession.d/00xdg_runttime \
+    && chmod 644 /etc/X11/Xsession.d/00xdg_runttime \
     && if [ -e /usr/share/lxqt/wallpapers/origami-light.png ]; then \
          update-alternatives --install \
            /usr/share/images/desktop-base/desktop-background desktop-background \
