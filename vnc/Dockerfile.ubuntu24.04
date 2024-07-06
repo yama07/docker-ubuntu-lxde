@@ -29,11 +29,11 @@ RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.c
       im-config \
       language-pack-ja \
       language-pack-ja-base \
-      lightdm \
       lxqt \
       net-tools \
       novnc \
       papirus-icon-theme \
+      sddm \
       sudo \
       supervisor \
       tzdata \
@@ -98,51 +98,60 @@ RUN { \
       echo '[program:dbus]'; \
       echo 'priority=10'; \
       echo 'command=/usr/bin/dbus-daemon --system --nofork --nopidfile'; \
-      echo '[program:lightdm]'; \
+      echo '[program:sddm]'; \
       echo 'priority=20'; \
-      echo 'command=/usr/local/bin/start-lightdm.sh'; \
+      echo 'command=/usr/bin/sddm'; \
       echo '[program:x11vnc]'; \
       echo 'priority=30'; \
-      echo 'startretries=5'; \
-      echo 'command=/usr/bin/x11vnc -display :0 -auth /var/run/lightdm/root/:0 -rfbauth /etc/x11vnc.passwd -xkb -forever -shared -repeat -capslock'; \
+      echo 'command=/usr/local/bin/start-x11vnc.sh'; \
       echo '[program:novnc]'; \
       echo 'priority=40'; \
       echo 'user=${USER}'; \
       echo 'command=/usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 80'; \
     } > /etc/supervisor/vnc.conf.template
 
-# Set scripts and configuration for lightdm and Xvfb
-RUN { \
-        # This script waits for D-Bus to be ready, then starts lightdm.
-        # If lightdm starts before D-Bus is active, the startup of lightdm may fail.
-        # Therefore, it is necessary to wait until D-Bus is ready before starting lightdm.
-        # This script was created to solve this problem.
-        echo '#!/bin/sh'; \
-        echo 'while true'; \
-        echo 'do'; \
-        echo '    busctl > /dev/null 2>&1 && break'; \
-        echo '    sleep 0.1'; \
-        echo 'done'; \
-        echo 'exec /usr/sbin/lightdm'; \
-    } > /usr/local/bin/start-lightdm.sh \
-    && chmod +x /usr/local/bin/start-lightdm.sh \
+# Set scripts and configuration for SDDM and Xvfb
+RUN mkdir /etc/sddm.conf.d \
     && { \
-        # This script starts Xvfb with the given resolution
-        # Invoking Xvfb directly from lightdm may lead to errors due to unsupported options,
-        # hence this script is used as a wrapper.
-        echo '#!/bin/sh'; \
-        echo 'RESOLUTION="$1"'; \
-        echo 'exec /usr/bin/Xvfb :0 -screen 0 "$RESOLUTION" -nolisten tcp'; \
-    } > /usr/local/bin/start-Xvfb.sh \
+        echo '[General]'; \
+        echo 'DisplayServer=x11'; \
+        echo '[X11]'; \
+        echo 'ServerPath=/usr/local/bin/start-Xvfb.sh'; \
+        echo 'ServerArguments=-screen 0 ${RESOLUTION}'; \
+        echo '[Autologin]'; \
+        echo 'User=${USER}'; \
+        echo 'Session=lxqt'; \
+    } > /etc/sddm.conf.d/xvfb_autologin.conf.tmplate \
+    && { \
+        # Xvfb wrapper script for SDDM.
+        # Processes args from SDDM, removes unnecessary ones (-background, -seat, vt*), and executes Xvfb.
+        echo '#!/bin/bash'; \
+        echo 'args=()'; \
+        echo 'while [ $# -gt 0 ]; do'; \
+        echo '    case "$1" in'; \
+        echo '        -background) shift 2 ;;'; \
+        echo '        -seat) shift 2 ;;'; \
+        echo '        vt*) shift ;;'; \
+        echo '        *) args+=("$1"); shift ;;'; \
+        echo '    esac'; \
+        echo 'done'; \
+        echo 'exec /usr/bin/Xvfb "${args[@]}"'; \
+    } > /usr/local/bin/start-Xvfb.sh  \
     && chmod +x /usr/local/bin/start-Xvfb.sh \
     && { \
-        # This is a template for lightdm configuration
-        echo '[Seat:*]'; \
-        echo 'xserver-command=/usr/local/bin/start-Xvfb.sh "${RESOLUTION}"'; \
-        echo 'autologin-user=${USER}'; \
-        echo 'autologin-user-timeout=0'; \
-        echo 'autologin-session=lxqt'; \
-    } > /etc/lightdm/lightdm.conf.template
+        # x11vnc auto start script for SDDM.
+        # Continuously checks for X display and auth file, then starts x11vnc when both are available.
+        echo '#!/bin/bash'; \
+        echo 'while true; do'; \
+        echo '    display_num=$(find /tmp/.X11-unix/ -type s 2>/dev/null | sed "s/.*X//")'; \
+        echo '    auth=$(find /var/run/sddm/ -type f 2>/dev/null)'; \
+        echo '    if [[ -n $display_num && -n $auth ]]; then'; \
+        echo '        exec /usr/bin/x11vnc -display ":$display_num" -auth "$auth" -rfbauth /etc/x11vnc.passwd -rfbport 5900 -xkb -forever -shared -repeat -capslock'; \
+        echo '    fi'; \
+        echo '    sleep 0.1'; \
+        echo 'done'; \
+    } > /usr/local/bin/start-x11vnc.sh \
+    && chmod +x /usr/local/bin/start-x11vnc.sh
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/

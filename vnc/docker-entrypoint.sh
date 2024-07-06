@@ -37,11 +37,21 @@ if (( $# == 0 )); then
     sudo x11vnc -storepasswd "${PASSWD}" /etc/x11vnc.passwd
 
     export USER RESOLUTION
-    envsubst < /etc/supervisor/vnc.conf.template  | sudo tee /etc/supervisor/vnc.conf > /dev/null
-    envsubst < /etc/lightdm/lightdm.conf.template | sudo tee /etc/lightdm/lightdm.conf > /dev/null
+    if [[ -e /etc/supervisor/vnc.conf.template ]]; then
+        envsubst < /etc/supervisor/vnc.conf.template  | sudo tee /etc/supervisor/vnc.conf > /dev/null
+        sudo rm -f /etc/supervisor/vnc.conf.template
+    fi
+    if [[ -e /etc/lightdm/lightdm.conf.template ]]; then
+        envsubst < /etc/lightdm/lightdm.conf.template | sudo tee /etc/lightdm/lightdm.conf > /dev/null
+        sudo rm -f /etc/lightdm/lightdm.conf.template
+    fi
+    if [[ -e /etc/sddm.conf.d/xvfb_autologin.conf.tmplate ]]; then
+        envsubst < /etc/sddm.conf.d/xvfb_autologin.conf.tmplate | sudo tee /etc/sddm.conf.d/xvfb_autologin.conf > /dev/null
+        sudo rm -f /etc/sddm.conf.d/xvfb_autologin.conf.tmplate
+    fi
 
     RUNTIME_DIR=/run/user/${USER_ID}
-    [ -e $RUNTIME_DIR ] && sudo rm -rf $RUNTIME_DIR
+    [[ -e $RUNTIME_DIR ]] && sudo rm -rf $RUNTIME_DIR
     sudo install -o $USER_ID -g $GROUP_ID -m 0700 -d $RUNTIME_DIR
 
     set -- /usr/bin/supervisord -c /etc/supervisor/vnc.conf
