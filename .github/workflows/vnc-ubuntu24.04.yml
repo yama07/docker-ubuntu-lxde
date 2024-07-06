@@ -32,3 +32,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:24.04-vnc_ja
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:noble-vnc_ja
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde:latest-vnc

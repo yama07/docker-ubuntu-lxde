@@ -16,11 +16,11 @@ Docker による Ubuntu の LXDE/LXQt デスクトップ環境です。
 ## Supported tags
 
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-vnc_ja)
-  `24.04-vnc_ja`, `noble-vnc_ja`: Ubuntu24.04 ベース [(vnc/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu24.04)
+  `24.04-vnc_ja`, `noble-vnc_ja`, `latest-vnc`: Ubuntu24.04 ベース [(vnc/Dockerfile.ubuntu24.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu24.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/24.04-vnc-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=24.04-vnc-slim_ja)
   `24.04-vnc-slim_ja`, `noble-vnc-slim_ja`: サイズを軽量化した Ubuntu24.04 ベース [(vnc/Dockerfile.ubuntu24.04_slim)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu24.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-vnc_ja)
-  `22.04-vnc_ja`, `jammy-vnc_ja`, `latest-vnc`: Ubuntu22.04 ベース [(vnc/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu22.04)
+  `22.04-vnc_ja`, `jammy-vnc_ja`: Ubuntu22.04 ベース [(vnc/Dockerfile.ubuntu22.04)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/22.04-vnc-slim_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=22.04-vnc-slim_ja)
   `22.04-vnc-slim_ja`, `jammy-vnc-slim_ja`: サイズを軽量化した Ubuntu22.04 ベース [(vnc/Dockerfile.ubuntu22.04_slim)](https://github.com/yama07/docker-ubuntu-lxde/blob/master/vnc/Dockerfile.ubuntu22.04)
 - [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/yama07/docker-ubuntu-lxde/20.04-vnc_ja?style=flat-square)](https://hub.docker.com/r/yama07/docker-ubuntu-lxde/tags?name=20.04-vnc_ja)
@@ -42,7 +42,7 @@ $ docker run --rm -it \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
     -e RESOLUTION=1024x768x24 \
-    yama07/docker-ubuntu-lxde:20.04-vnc_ja
+    yama07/docker-ubuntu-lxde:24.04-vnc_ja
 ```
 
 オプションは以下の通りです。
@@ -94,7 +94,7 @@ Docker イメージのビルド方法は以下の通りです。
 ```
 $ git clone https://github.com/yama07/docker-ubuntu-lxde.git
 $ docker build \
-    -t lxde_vnc:ubuntu20.04_ja \
-    -f ./vnc/Dockerfile.ubuntu20.04 \
+    -t lxde_vnc:ubuntu24.04_ja \
+    -f ./vnc/Dockerfile.ubuntu24.04 \
     ./vnc
 ```
