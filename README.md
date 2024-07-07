@@ -106,8 +106,8 @@ VNC クライアント（VNC Viewer）で`<DockerホストのIPアドレス>:590
 
 ### VNC
 
-![VNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/VNC-ubuntu20.04_ja.png)
+![VNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/VNC-ubuntu24.04_ja.png)
 
 ### noVNC
 
-![noVNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/noVNC-ubuntu20.04_ja.png)
+![noVNC screenshot](https://raw.githubusercontent.com/yama07/docker-ubuntu-lxde/master/screenshot/noVNC-ubuntu24.04_ja.png)
