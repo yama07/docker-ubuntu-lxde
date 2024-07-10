@@ -87,7 +87,7 @@ $ docker run -it \
     -e USER=yama07 \
     -e PASSWD=mypasswd \
     -e RESOLUTION=1024x768x24 \
-    yama07/docker-ubuntu-lxde:20.04-vnc_ja
+    yama07/docker-ubuntu-lxde:24.04-vnc_ja
 ```
 
 VNC クライアント（VNC Viewer）で`<DockerホストのIPアドレス>:5900`に接続して下さい。
