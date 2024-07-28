@@ -21,6 +21,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/docker-ubuntu-lxde
-          short-description: Ubuntu based LXDE desktop environment with Japanese language support.
+          short-description: Ubuntu based LXDE/LXQt desktop environment with Japanese language support.
           readme-filepath: README.md
           enable-url-completion: true
